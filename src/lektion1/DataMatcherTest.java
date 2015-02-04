@@ -11,6 +11,8 @@ import org.junit.Test;
 
 public class DataMatcherTest {
 	private DataMatcher dataMatcher;
+	private ResultingData result;
+	private double delta = 0.001;
 	private DataSource source1 = new DataSource() {
 		
 		@Override
@@ -65,12 +67,16 @@ public class DataMatcherTest {
 	@Before
 	public void setUp() throws Exception {
 		dataMatcher = new DataMatcher(source1, source2, 1);
-		ResultingData result = dataMatcher.doTheJob();
+		result = dataMatcher.doTheJob();
 	}
 
 	@Test
 	public void testDoTheJob() {
-		
+		assertEquals(5, result.getData().size(), delta);
+		assertEquals("Temperatur i Gävle", result.getXSourceName());
+		assertEquals("Grader", result.getXUnit());
+		assertEquals("Benbrott på sjukhuset", result.getYSourceName());
+		assertEquals("Antal", result.getYUnit());
 	}
 
 }
