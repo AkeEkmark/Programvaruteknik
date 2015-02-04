@@ -1,6 +1,6 @@
 package lektion1;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Map;
 /**
  * 
@@ -11,7 +11,7 @@ public interface DataSource {
 	
 	String getName();
 	String getUnit();
-	Map<Date, Double> getData();
+	Map<LocalDate, Double> getData();
 	
 }
 
