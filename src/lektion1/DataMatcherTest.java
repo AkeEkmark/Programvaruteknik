@@ -32,7 +32,7 @@ public class DataMatcherTest {
 			map.put(LocalDate.parse("2015-01-02"), 7.0);
 			map.put(LocalDate.parse("2015-01-03"), -1.0);
 			map.put(LocalDate.parse("2015-01-04"), -3.0);
-			map.put(LocalDate.parse("2015-01-05"), -5.0);
+			map.put(LocalDate.parse("2015-01-06"), -5.0);
 			
 			return map;
 		}
@@ -72,7 +72,7 @@ public class DataMatcherTest {
 
 	@Test
 	public void testDoTheJob() {
-		assertEquals(5, result.getData().size(), delta);
+		assertEquals(4, result.getData().size(), delta);
 		assertEquals("Temperatur i Gävle", result.getXSourceName());
 		assertEquals("Grader", result.getXUnit());
 		assertEquals("Benbrott på sjukhuset", result.getYSourceName());
