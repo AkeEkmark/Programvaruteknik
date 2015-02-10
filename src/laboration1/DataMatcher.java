@@ -41,8 +41,8 @@ public class DataMatcher {
 	}
 	private Map<LocalDate, Double> compactDatasource(Resolution resolution2,
 			Map<LocalDate, Double> data) {
+		data = resolution2.compactData(data);
 		
-		
-		return null;
+		return data;
 	}
 }

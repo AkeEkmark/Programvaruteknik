@@ -12,7 +12,6 @@ import org.junit.Test;
 public class DataMatcherTest {
 	private DataMatcher dataMatcher;
 	private ResultingData result;
-	private double delta = 0.001;
 	private DataSource source1;
 	private DataSource source2;
 	
@@ -34,10 +33,10 @@ public class DataMatcherTest {
 			public Map<LocalDate, Double> getData() {
 				Map<LocalDate, Double> map = new HashMap<LocalDate, Double>();
 				map.put(LocalDate.parse("2015-01-01"), 9.0);
-				map.put(LocalDate.parse("2015-01-01"), 7.0);
-				map.put(LocalDate.parse("2015-01-03"), -1.0);
-				map.put(LocalDate.parse("2015-01-03"), -3.0);
-				map.put(LocalDate.parse("2015-01-06"), -5.0);
+				map.put(LocalDate.parse("2015-02-02"), 7.0);
+				map.put(LocalDate.parse("2015-03-03"), -1.0);
+				map.put(LocalDate.parse("2015-04-04"), -3.0);
+				map.put(LocalDate.parse("2013-01-06"), -5.0);
 				
 				return map;
 			}
@@ -58,23 +57,24 @@ public class DataMatcherTest {
 			public Map<LocalDate, Double> getData() {
 				Map<LocalDate, Double> map = new HashMap<LocalDate, Double>();
 				map.put(LocalDate.parse("2015-01-01"), 0.0);
-				map.put(LocalDate.parse("2015-01-02"), 1.0);
-				map.put(LocalDate.parse("2015-01-03"), 4.0);
-				map.put(LocalDate.parse("2015-01-04"), 2.0);
-				map.put(LocalDate.parse("2015-01-05"), 1.0);
+				map.put(LocalDate.parse("2015-02-02"), 1.0);
+				map.put(LocalDate.parse("2015-03-03"), 4.0);
+				map.put(LocalDate.parse("2015-04-04"), 2.0);
+				map.put(LocalDate.parse("2013-02-05"), 1.0);
 				
 				return map;
 			}
 			
 		};
 		
-		dataMatcher = new DataMatcher(source1, source2, Resolution.DAY);
+		dataMatcher = new DataMatcher(source1, source2, Resolution.QUARTER);
 		result = dataMatcher.doTheJob();
 	}
 
 	@Test
 	public void testDoTheJob() {
-		assertEquals(4, result.getData().size());
+		
+		assertEquals(3, result.getData().size());
 		assertEquals("Temperatur i Gävle", result.getXSourceName());
 		assertEquals("Grader", result.getXUnit());
 		assertEquals("Benbrott på sjukhuset", result.getYSourceName());
