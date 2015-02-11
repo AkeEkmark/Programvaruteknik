@@ -125,28 +125,32 @@ enum Resolution {
 			int year;
 			int month;
 			int weekday;
-			String week;
+			int dateOfDay;
+			int daysFromMonday;
+			String yearWeek;
 			Double value;
 			Double values = 0.0;
 			int nbrOfDates = 0;
 			for (LocalDate date : data.keySet()) {
 				year = date.getYear();
 				month = date.getMonthValue();
+				dateOfDay = date.getDayOfMonth();
 				weekday = date.getDayOfWeek().getValue();
-				week = date.format(DateTimeFormatter.ISO_WEEK_DATE).substring(0, 1);
-				if (!compacted.containsKey(LocalDate.of(year, month, 1))) {
+				daysFromMonday = weekday-1;
+				yearWeek = date.format(DateTimeFormatter.ISO_WEEK_DATE).substring(0, 8);
+				if (!compacted.containsKey(date.minusDays(daysFromMonday))) {
 					value = data.get(date);
 					values += value;
 					nbrOfDates++;
 					for (LocalDate date2 : data.keySet()) {
-						if (date2.getYear() == year && date2.getMonthValue() == month) {
+						if (date2.format(DateTimeFormatter.ISO_WEEK_DATE).substring(0, 8) == yearWeek) {
 							values += data.get(date2);
 							nbrOfDates++;	
 						}
 					}
 					value = values/nbrOfDates;
-					LocalDate firstOfTheMonth = LocalDate.of(year, month, 1);
-					compacted.put(firstOfTheMonth, value);
+					LocalDate firstOfTheWeek = date.minusDays(daysFromMonday);
+					compacted.put(firstOfTheWeek, value);
 					values = 0.0;
 					nbrOfDates = 0;
 				}

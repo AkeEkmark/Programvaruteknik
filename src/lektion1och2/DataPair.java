@@ -1,4 +1,4 @@
-package lektion1;
+package lektion1och2;
 /**
  * 
  * @author hfk10aek
