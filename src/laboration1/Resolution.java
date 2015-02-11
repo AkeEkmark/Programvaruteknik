@@ -122,19 +122,13 @@ enum Resolution {
 		@Override
 		public Map<LocalDate, Double> compactData(Map<LocalDate, Double> data) {
 			Map<LocalDate, Double> compacted = new HashMap<LocalDate, Double>();
-			int year;
-			int month;
 			int weekday;
-			int dateOfDay;
 			int daysFromMonday;
 			String yearWeek;
 			Double value;
 			Double values = 0.0;
 			int nbrOfDates = 0;
 			for (LocalDate date : data.keySet()) {
-				year = date.getYear();
-				month = date.getMonthValue();
-				dateOfDay = date.getDayOfMonth();
 				weekday = date.getDayOfWeek().getValue();
 				daysFromMonday = weekday-1;
 				yearWeek = date.format(DateTimeFormatter.ISO_WEEK_DATE).substring(0, 8);

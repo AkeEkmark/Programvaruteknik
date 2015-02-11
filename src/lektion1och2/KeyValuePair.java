@@ -1,4 +1,4 @@
-package laboration1;
+package lektion1och2;
 
 import java.time.LocalDate;
 
