@@ -1,6 +1,7 @@
 package laboration1;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -82,7 +83,7 @@ enum Resolution {
 			else if (month < 10) {
 				return 7;
 			}	
-			return 4;
+			return 10;
 		}
 	}, MONTH {
 
@@ -97,6 +98,42 @@ enum Resolution {
 			for (LocalDate date : data.keySet()) {
 				year = date.getYear();
 				month = date.getMonthValue();
+				if (!compacted.containsKey(LocalDate.of(year, month, 1))) {
+					value = data.get(date);
+					values += value;
+					nbrOfDates++;
+					for (LocalDate date2 : data.keySet()) {
+						if (date2.getYear() == year && date2.getMonthValue() == month) {
+							values += data.get(date2);
+							nbrOfDates++;	
+						}
+					}
+					value = values/nbrOfDates;
+					LocalDate firstOfTheMonth = LocalDate.of(year, month, 1);
+					compacted.put(firstOfTheMonth, value);
+					values = 0.0;
+					nbrOfDates = 0;
+				}
+			}			
+			return compacted;
+		}
+	}
+	,WEEK {
+		@Override
+		public Map<LocalDate, Double> compactData(Map<LocalDate, Double> data) {
+			Map<LocalDate, Double> compacted = new HashMap<LocalDate, Double>();
+			int year;
+			int month;
+			int weekday;
+			String week;
+			Double value;
+			Double values = 0.0;
+			int nbrOfDates = 0;
+			for (LocalDate date : data.keySet()) {
+				year = date.getYear();
+				month = date.getMonthValue();
+				weekday = date.getDayOfWeek().getValue();
+				week = date.format(DateTimeFormatter.ISO_WEEK_DATE).substring(0, 1);
 				if (!compacted.containsKey(LocalDate.of(year, month, 1))) {
 					value = data.get(date);
 					values += value;
