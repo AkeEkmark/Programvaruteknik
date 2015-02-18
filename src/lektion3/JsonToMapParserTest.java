@@ -2,6 +2,7 @@ package lektion3;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.junit.Before;
@@ -47,9 +48,9 @@ public class JsonToMapParserTest {
 	}
 	@Test
 	public void testGetArrayResults() {
-		Map<String, Object> resultingMap = new JsonToMapParser("{\"key\" : 2.0, \"key2\" : 3.0}").getResult();
+		Map<String, Object> resultingMap = new JsonToMapParser("{\"key\" :  [2.0, 3.0], \"key2\" : 3.0}").getResult();
 		assertEquals(2, resultingMap.size());
-		assertEquals(2.0, resultingMap.get("key"));
+		assertEquals(ArrayList.class, resultingMap.get("key").getClass());
 		assertEquals(3.0, resultingMap.get("key2"));
 	}
 	
