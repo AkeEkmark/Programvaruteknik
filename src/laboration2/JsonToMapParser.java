@@ -11,6 +11,7 @@ public class JsonToMapParser {
 		this.json = json;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Map<String, Object> getResult() {
 		return new Genson().deserialize(json, Map.class);
 	}

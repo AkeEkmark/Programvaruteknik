@@ -31,7 +31,7 @@ public class UrlFetcher {
 		
 		return result;
 	}
-	
+	// Test
 	public static void main(String[] args) {
 		UrlFetcher url = new UrlFetcher("http://api.everysport.com/v1/events?apikey=1769e0fdbeabd60f479b1dcaff03bf5c&league=63925&limit=2");
 		String result = url.getContent();

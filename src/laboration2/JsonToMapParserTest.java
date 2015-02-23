@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class JsonToMapParserTest {
-	private JsonToMapParser instance;
 	@Before
 	public void setUp() throws Exception {
 		
