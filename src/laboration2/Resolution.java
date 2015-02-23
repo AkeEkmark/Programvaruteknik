@@ -1,4 +1,4 @@
-package laboration1;
+package laboration2;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

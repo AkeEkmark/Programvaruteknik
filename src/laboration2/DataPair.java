@@ -1,4 +1,4 @@
-package laboration1;
+package laboration2;
 /**
  * 
  * @author hfk10aek
