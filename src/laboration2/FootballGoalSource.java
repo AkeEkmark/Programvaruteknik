@@ -23,14 +23,14 @@ public class FootballGoalSource implements DataSource {
 		return "Antal mål";
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Map<LocalDate, Double> getData() {
-		UrlFetcher urlFetcher = new UrlFetcher("http://api.everysport.com/v1/events?apikey=1769e0fdbeabd60f479b1dcaff03bf5c&league=63925&limit=50");
+		UrlFetcher urlFetcher = new UrlFetcher("http://api.everysport.com/v1/events?apikey=1769e0fdbeabd60f479b1dcaff03bf5c&league=63925&limit=100");
 		JsonToMapParser parser = new JsonToMapParser(urlFetcher.getContent());
 		Map<String, Object> parserResult = parser.getResult();
 		Map<LocalDate, Double> result = new TreeMap<>();
-		// loopa igenom events och hämta ut datum och antal mål, stödmetod addGoalsToDate(result, date, goals)
-		for (Map event : (List<Map>) parserResult.get("events")) {
+		for (Map<Object, Object> event : (List<Map<Object,Object>>) parserResult.get("events")) {
 			LocalDate date = LocalDate.parse(event.get("startDate").toString().substring(0, 10));
 			int goals = Integer.parseInt(event.get("homeTeamScore").toString());
 			goals += Integer.parseInt(event.get("visitingTeamScore").toString());

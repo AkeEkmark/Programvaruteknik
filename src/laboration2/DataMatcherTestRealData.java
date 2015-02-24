@@ -1,6 +1,5 @@
 package laboration2;
 
-import static org.junit.Assert.*;
 import laboration1.DataMatcher;
 import laboration1.DataSource;
 import laboration1.Resolution;
@@ -18,7 +17,7 @@ public class DataMatcherTestRealData {
 	public void setUp() throws Exception {
 		source1 = new FootballGoalSource();
 		source2 = new SineWaveSource();
-		dataMatcher = new DataMatcher(source1, source2, Resolution.YEAR);
+		dataMatcher = new DataMatcher(source1, source2, Resolution.WEEK);
 		result = dataMatcher.doTheJob();
 	}
 
