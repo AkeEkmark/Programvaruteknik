@@ -13,6 +13,8 @@ public class JsonToMapParser {
 	
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> getResult() {
+		Genson g = new Genson();
 		return new Genson().deserialize(json, Map.class);
+		
 	}
 }
