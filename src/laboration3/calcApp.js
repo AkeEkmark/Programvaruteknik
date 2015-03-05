@@ -1,6 +1,3 @@
-/**
- * 
- */
 angular.module("calcApp", []).controller("CalcCtrl", function ($scope) {
 		$scope.displayValue = 0;
 		$scope.memory = null;
@@ -22,10 +19,11 @@ angular.module("calcApp", []).controller("CalcCtrl", function ($scope) {
 				$scope.memory = parseFloat($scope.displayValue);
 			}
 		};
-		$scope.setOperator = function (String) {
+		$scope.setOperator = function (operator) {
 			$scope.saveInMemory();
-			$scope.operation = String;
+			$scope.operation = operator;
 			$scope.displayValue = 0;  
+			$scope.firstValue = true;
 		};
 		$scope.clear = function () {
 			$scope.displayValue = 0;
