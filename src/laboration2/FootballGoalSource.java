@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import laboration1.DataSource;
 import lektion3.JsonToMapParser;
 import lektion3.UrlFetcher;
 

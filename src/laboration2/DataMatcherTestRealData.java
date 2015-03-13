@@ -1,9 +1,6 @@
 package laboration2;
 
-import laboration1.DataMatcher;
-import laboration1.DataSource;
-import laboration1.Resolution;
-import laboration1.ResultingData;
+
 
 import org.junit.Before;
 import org.junit.Test;
